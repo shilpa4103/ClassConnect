@@ -17,6 +17,13 @@ if (!roomId) {
     roomId = 'main';
 }
 
+
+let displayName = sessionStorage.getItem('display_name')
+if(!displayName){
+    window.location ='lobby.html'
+}
+
+
 let localTracks = [];
 let remoteUsers = {};
 
