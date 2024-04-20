@@ -9,6 +9,9 @@ if (!uid) {
 let token = null;
 let client;
 
+let rtmClient;
+let channel;
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let roomId = urlParams.get('room');
@@ -32,6 +35,21 @@ let localScreenTracks;
 let sharingScreen = false;
 
 let joinRoomInit = async () => {
+   rtmClient= await AgoraRTM.createInstance(APP_ID)
+   await rtmClient.login({uid,token})
+
+   await rtmClient.addOrUpdateLocalUserAttributes({'name':displayName})
+  console.log(rtmClient.name)
+
+   channel=await rtmClient.createChannel(roomId)
+   await channel.join()
+
+   channel.on('MemberJoined',handleMemberJoined)
+   channel.on('MemberLeft',handleMemberLeft)
+
+   getMembers()
+
+
     client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
     await client.join(APP_ID, roomId, token, uid);
 
@@ -61,8 +79,8 @@ let joinStream = async () => {
 let switchToCamera = async () => {
     let player = `<div class="video__container" id="user-container-${uid}">
     <div class="video-player" id="user-${uid}"></div>
-   </div>`;
-   displayFrame.insertAdjacentHTML('beforeend', player);
+    </div>`;
+    displayFrame.insertAdjacentHTML('beforeend', player);
 
    await localTracks[0].setMuted(true);
    await localTracks[1].setMuted(true);
