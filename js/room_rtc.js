@@ -39,15 +39,17 @@ let joinRoomInit = async () => {
    await rtmClient.login({uid,token})
 
    await rtmClient.addOrUpdateLocalUserAttributes({'name':displayName})
-  console.log(rtmClient.name)
 
    channel=await rtmClient.createChannel(roomId)
    await channel.join()
 
    channel.on('MemberJoined',handleMemberJoined)
    channel.on('MemberLeft',handleMemberLeft)
+   channel.on('ChannelMessage',handleChannelMessage)
+
 
    getMembers()
+   addBotMessageToDom(`Welcome to the room ${displayName}!!👋`)
 
 
     client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
@@ -55,10 +57,12 @@ let joinRoomInit = async () => {
 
     client.on('user-published', handleUserPublished);
     client.on('user-left', handleUserLeft);
-    joinStream();
+    
 };
 
 let joinStream = async () => {
+    document.getElementById('join-btn').style.display='none'
+    document.getElementsByClassName('stream__actions')[0].style.display='flex'
     localTracks = await AgoraRTC.createMicrophoneAndCameraTracks({}, {
         encoderConfig: {
             width: { min: 640, ideal: 1920, max: 1920 },
@@ -122,7 +126,10 @@ let handleUserPublished = async (user, mediaType) => {
 
 let handleUserLeft = async (user) => {
     delete remoteUsers[user.uid];
-    document.getElementById(`user-container-${user.uid}`).remove();
+    let item=document.getElementById(`user-container-${user.uid}`)
+    if(item){
+        item.remove()
+    }
 
     if (userIdInDisplayFrame === `user-container-${user.uid}`) {
         displayFrame.style.display = null;
@@ -205,7 +212,39 @@ let toggleScreen = async (e) => {
     }
 };
 
+
+let leaveStream = async(e) =>{
+    e.preventDefault()
+    document.getElementById('join-btn').style.display='block'
+    document.getElementsByClassName('stream__actions')[0].style.display='none'
+
+    for(let i=0;localTracks.length>i;i++){
+        localTracks.stop()
+        localTracks.close()
+
+    }
+    await client.unpublish([localTracks[0],localTracks[1]])
+
+    if(localScreenTracks){
+        await client.unpublish([localScreenTracks])
+    }
+    document.getElementById(`user-container-${uid}`).remove()
+
+    if(userIdInDisplayFrame===`user-container-${uid}`){
+        displayFrame.style.display=null
+
+        for(let i=0;videoFrames.length>i;i++){
+            videoFrames[i].style.height='300px'
+            videoFrames[i].style.width='300px'
+        }
+    }
+    channel.sendMessage({text:JSON.stringify({'type':'user_left','uid':uid})})
+}
+
+
 document.getElementById('camera-btn').addEventListener('click', toggleCamera);
 document.getElementById('mic-btn').addEventListener('click', toggleMic);
 document.getElementById('screen-btn').addEventListener('click', toggleScreen);
+document.getElementById('join-btn').addEventListener('click',joinStream)
+document.getElementById('leave-btn').addEventListener('click',leaveStream)
 joinRoomInit();
