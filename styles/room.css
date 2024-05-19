@@ -12,8 +12,8 @@
 }
 
 #members__container {
-  background-color: #262625;
-  border-right: 1px solid #797a79;
+  background-color: #57A6A1;
+  border-right: 1px solid #57A6A1;
   overflow-y: auto;
   width: 90%;
   max-width: 250px;
@@ -23,7 +23,7 @@
 }
 
 #members__count {
-  background-color: #1d1d1c;
+  background-color: #57A6A1;
   padding: 7px 15px;
   font-size: 14px;
   font-weight: 600;
@@ -37,7 +37,7 @@
   padding: 0 1rem;
   position: fixed;
   font-size: 18px;
-  background-color: #323143;
+  background-color: #1d2b3a;
   width: 218px;
 }
 
@@ -75,7 +75,7 @@
 
 #messages__container {
   height: calc(100vh - 85px);
-  background-color: #262625;
+  background-color:#1d2b3a;
   right: 0;
   position: absolute;
   width: 100%;
@@ -101,7 +101,7 @@
 }
 
 .message__body {
-  background-color: #363739;
+  background-color: #1d2b3a;
   border-radius: 10px;
   padding: 10px 15px;
   width: fit-content;
@@ -122,13 +122,13 @@
 
 .message__author {
   margin-right: 10px;
-  color: #2aca3e!important;
+  color: #57A6A1!important;
 
 }
 
 .message__author__bot {
   margin-right: 10px;
-  color: #a52aca!important;
+  color:#57A6A1!important;
 
 }
 
@@ -141,7 +141,7 @@
   position: fixed;
   bottom: 0;
   display: block;
-  background-color: #1a1a1a;
+  background-color: #57A6A1;
   padding: 1em;
 }
 
@@ -153,7 +153,7 @@
   padding: 18px;
   font-size: 14px;
   box-sizing: border-box;
-  background-color: #3f434a;
+  background-color: #1d2b3a;
 }
 
 #message__form input:focus {
@@ -161,7 +161,7 @@
 }
 
 #message__form input::placeholder {
-  color: #707575;
+  color:#57A6A1;
 }
 
 #stream__container {
@@ -175,7 +175,7 @@
 }
 
 #stream__box{
-  background-color: #3f434a;
+  background-color: #1d2b3a;
   height: 60vh;
   display: none;
 }
@@ -208,7 +208,7 @@
   display: flex;
   justify-content:center;
   align-items: center;
-  border: 2px solid #b366f9;
+  border: 2px solid #57A6A1;
   border-radius: 50%;
   cursor:pointer;
   overflow: hidden;
@@ -301,7 +301,7 @@
   position: fixed;
   bottom: 1rem;
   border-radius: 8px;
-  background-color: #1a1a1a60;
+  background-color: #1d2b3a;
   padding: 1rem;
   left: 50%;
   display: none;
@@ -312,7 +312,7 @@
 .stream__actions a,
 .stream__actions button {
   cursor: pointer;
-  background-color: #262625;
+  background-color: #1d2b3a;
   color: #fff;
   border: none;
   display: flex;
@@ -334,11 +334,11 @@
 .stream__actions button.active,
 .stream__actions a:hover,
 .stream__actions button:hover {
-  background-color: #845695;
+  background-color: #57A6A1;
 }
 
 #join-btn{
-  background-color: #845695;
+  background-color: #57A6A1;
   font-size: 18px;
   padding: 25px 50px;
   border:none;

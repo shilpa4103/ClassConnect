@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ClassConnect</title>
+    <style>
+      html {
+
+      scroll-behavior: smooth;
+      }
+   </style>
+    <link rel="stylesheet" href="./style.css" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link href="styles.css" type="text/css" rel="Stylesheet" />
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/95dc93da07.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <div id="container">
+      <header>
+        <div class="flex container">
+          <div id="logo">
+            <!-- <img src="logo.jpeg" alt="Logo" height="100px" width="100px"> -->
+            <p>ClassConnect</p>
+          </div>
+          <nav>
+            <button id="nav-toggle" class="hamburger-menu">
+              <span class="strip"></span>
+              <span class="strip"></span>
+              <span class="strip"></span>
+            </button>
+
+            <ul id="nav-menu">
+              <li><a href="#" class="active">Home</a></li>
+              <li><a href="#services">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="signup.html">Sign Up</a></li>
+              <li><a href="login.html">Login</a></li>
+              <li id="close-flyout"><span class="fas fa-times"></span></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+    <section id="main">
+        <div class="fade"></div>
+        <div class="main-text">
+          <p>Welcome to our website!</p>
+          <h4>
+            Experience hassle-free online communication
+            with our platform. Join us for smooth video calls and chats, perfect
+            for online classes,virtual meetings and staying connected with loved
+            ones.
+          </h4>
+        </div>
+      </section>
+    </div>
+
+    <section id="services">
+      <div class="container">
+        <h2>About Us</h2>
+        <p>
+          At ClassConnect, We're a team passionate about creating user-friendly
+          solutions for seamless online communication. Whether you're or
+          engaging in virtual learning or team meetings or catching up with
+          loved ones , our platform is designed to bring people together
+          effortlessly. Our platform offers a range of services tailored to meet
+          your needs
+        </p>
+        <br>
+        <div class="flex">
+          <div>
+            <div class="fas fa-chart-line"></div>
+            <div class="services-card-right">
+              <h3>Automated Attendance Tracking</h3>
+              <p>
+                Effortlessly track attendance with our automated system, ensuring efficiency and accuracy in every session. 
+                Seamlessly integrated into our platform, this feature streamlines the process, allowing hosts to focus on content delivery while ensuring participants are accounted for effortlessly based on their real time engagement.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="fas fa-solid fa-video"></div>
+            <div class="services-card-right">
+              <h3>Calls and Chats</h3>
+              <p>
+                Experience seamless and high-quality video calls with ease, allowing you to connect face-to-face from anywhere in the world.
+                 Our platform ensures crystal-clear audio and smooth online chatting during calls with host ad participants, making every interaction feel engaging.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="fas fa-solid fa-upload"></div>
+            <div class="services-card-right">
+              <h3>Data Sharing</h3>
+              <p>
+                Easily share files, documents, and presentations directly on-screen during your calls, enhancing collaboration and productivity.
+                 Our intuitive platform allows seamless sharing, enabling participants to view and interact with shared content in real-time, fostering efficient communication and decision-making.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+
+        <div class="flex">
+          <div id="form-container">
+            <h3>Contact Form</h3>
+            <form>
+              <label for="name">Name</label>
+              <input type="text" id="name" />
+
+              <label for="email">Email</label>
+              <input type="text" id="email" />
+
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" />
+
+              <label for="message">Message</label>
+              <textarea id="message">Write your message here..</textarea>
+
+              <button class="rounded">Send Message</button>
+            </form>
+          <!-- </div>
+            <label>Phone</label>
+            <a href="#">232-232-2323</a>
+
+            <label>Email Address</label>
+            <a href="#">ouremail@domain.com</a> 
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms of Service</a>
+      </div>
+      <p>Copyright &copy; 2024 All rights reserved</p>
+    </footer>
+
+    <script>
+      $(function () {
+        let headerElem = $("header");
+        let logo = $("#logo");
+        let navMenu = $("#nav-menu");
+        let navToggle = $("#nav-toggle");
+
+        $("#properties-slider").slick({
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          prevArrow: '<a href="#" class="slick-arrow slick-prev">previous</a>',
+          nextArrow: '<a href="#" class="slick-arrow slick-next">next</a>',
+          responsive: [
+            {
+              breakpoint: 1100,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                infinite: true,
+              },
+            },
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                infinite: true,
+              },
+            },
+            {
+              breakpoint: 530,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+              },
+            },
+          ],
+        });
+
+        $("#testimonials-slider").slick({
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          prevArrow: '<a href="#" class="slick-arrow slick-prev"><</a>',
+          nextArrow: '<a href="#" class="slick-arrow slick-next">></a>',
+        });
+
+        navToggle.on("click", () => {
+          navMenu.css("right", "0");
+        });
+
+        $("#close-flyout").on("click", () => {
+          navMenu.css("right", "-100%");
+        });
+
+        $(document).on("click", (e) => {
+          let target = $(e.target);
+          if (
+            !(
+              target.closest("#nav-toggle").length > 0 ||
+              target.closest("#nav-menu").length > 0
+            )
+          ) {
+            navMenu.css("right", "-100%");
+          }
+        });
+
+        $(document).scroll(() => {
+          let scrollTop = $(document).scrollTop();
+
+          if (scrollTop > 0) {
+            navMenu.addClass("is-sticky");
+            logo.css("color", "#000");
+            headerElem.css("background", "#fff");
+            navToggle.css("border-color", "#000");
+            navToggle.find(".strip").css("background-color", "#000");
+          } else {
+            navMenu.removeClass("is-sticky");
+            logo.css("color", "#fff");
+            headerElem.css("background", "transparent");
+            navToggle.css("bordre-color", "#fff");
+            navToggle.find(".strip").css("background-color", "#fff");
+          }
+
+          headerElem.css(
+            scrollTop >= 200
+              ? { padding: "0.5rem", "box-shadow": "0 -4px 10px 1px #999" }
+              : { padding: "1rem 0", "box-shadow": "none" }
+          );
+        });
+
+        $(document).trigger("scroll");
+      });
+
+
+
+    </script>
+  </body>
+</html>

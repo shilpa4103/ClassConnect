@@ -11,23 +11,23 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
+  box-shadow: inset 0 0 5px #1d2b3a;
   border-radius: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #797a79;
+  background: #1d2b3a;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #845695;
+  background: #57A6A1;
 }
 
 body {
-  background-color: #1a1a1a;
+  background-color:#1d2b3a;
   color: #fff;
 
   font-size: 14px;
@@ -63,8 +63,8 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #000000;
-  background-color: #1a1a1a;
+  border-bottom: 1px solid #1d2b3a;
+  background-color: #1d2b3a;
   text-decoration: none;
   padding: 16px 5%;
   z-index: 999;
@@ -120,12 +120,12 @@ a {
 .nav__link:hover {
   color: rgb(230, 228, 228);
   text-decoration: none;
-  border-color: #845695;
+  border-color: #57A6A1;
 }
 
 #create__room__btn {
   display: block;
-  background-color: #845695;
+  background-color: #57A6A1;
   padding: 8px 24px;
   font-size: 14px;
   font-weight: 500;
@@ -133,7 +133,7 @@ a {
 }
 
 #create__room__btn:hover {
-  background-color: #845695;
+  background-color: #1fb9af;
 }
 
 .nav--list {
