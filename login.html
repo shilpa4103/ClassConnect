@@ -40,7 +40,34 @@
 </body>
 
 <script>
-   
+    document.querySelector('form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const email = formData.get('useremail');
+        const password = formData.get('userpassword');
+
+        if(password==null || email==null){
+            alert("Any form field cannot be null")
+            document.querySelector('form').reset();
+        }
+
+     
+    
+        const response = await fetch('http://localhost:3000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(Object.fromEntries(formData)),
+        });
+    
+        const result = await response.text();
+        alert(result);
+    
+        if (result==="logged") {
+            window.location.href = 'homepage.html';
+        }
+      });
 
 
 </script>

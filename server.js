@@ -43,7 +43,7 @@ app.post("/register", async (req, res) => {
     }
 
     await db.query("INSERT INTO users (email, name, password) VALUES ($1, $2, $3)", [email, username, password]);
-    res.status(201).send("Registration successful");
+    res.status(201).send("Registration successful Now Login to Continue");
   } catch (error) {
     console.error("Database error:", error);
     res.status(500).send("Internal server error");
@@ -58,9 +58,11 @@ app.post("/login", async (req, res) => {
   if (exist.rows.length > 0) {
     const user = exist.rows[0];
     const storedPassword = user.password;
+    const username = user.name;
     if (storedPassword === password) {
-      res.redirect("homepage.html");
-    } else {
+       res.send("logged")
+    } 
+    else {
       res.send("Incorrect password");
     }
   } else {
