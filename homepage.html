@@ -255,6 +255,45 @@
 
         $(document).trigger("scroll");
       });
+      
+      //to manage the contact form backend 
+      document.querySelector('form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const subject = formData.get('subject');
+
+
+        if(name=="" || email=="" || subject == ""){
+            alert("Any form field cannot be null")
+            document.querySelector('form').reset();
+        }
+
+     
+    
+        const response = await fetch('http://localhost:3000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(Object.fromEntries(formData)),
+        });
+    
+        const result = await response.json();
+        
+        const logged ="sent";
+        if (result.status===logged) {
+            window.location.href = 'homepage.html';
+        }
+        else{
+            alert(result.status);
+        }
+      });
+
+
+
+      //to manage the user login name on the homepage
       const status = localStorage.getItem('logged');
       console.log(status);
       if(status=='yes'){
