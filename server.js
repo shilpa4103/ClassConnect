@@ -49,6 +49,9 @@ app.post("/register", async (req, res) => {
     res.status(500).send("Internal server error");
   }
 });
+
+
+
 app.post("/login", async (req, res) => {
   const email = req.body.useremail;
   const password = req.body.userpassword;
@@ -70,6 +73,28 @@ app.post("/login", async (req, res) => {
    
   }
 });
+
+
+app.post("/contact", async (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const subject = req.body.subject;
+  const message = req.body.message;
+  const exist = await db.query(
+    "SELECT * FROM users WHERE email = $1", [email]
+  );
+  if (exist.rows.length > 0) {
+    await db.query("INSERT INTO queries (name, email, subject, message) VALUES ($1, $2, $3, $4)", [name, email,subject,message]);
+    res.json({ status: "sent" });
+  } 
+  else {
+    res.json({ status: "User doesn't exist Register to contact" });
+  }
+
+});
+
+
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

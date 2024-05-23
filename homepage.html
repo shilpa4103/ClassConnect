@@ -138,9 +138,9 @@
               <input type="text" id="subject" name="subject"/>
 
               <label for="message">Message</label>
-              <textarea id="message">Write your message here..</textarea>
+              <textarea id="message" name="message">Write your message here..</textarea>
 
-              <button class="rounded">Send Message</button>
+              <button type="submit"  class="rounded">Send Message</button>
             </form>
           <!-- </div>
             <label>Phone</label>
@@ -281,7 +281,6 @@
         });
     
         const result = await response.json();
-        
         const logged ="sent";
         if (result.status===logged) {
             window.location.href = 'homepage.html';
