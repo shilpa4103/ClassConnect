@@ -49,8 +49,8 @@
               <li><a href="#" class="active">Home</a></li>
               <li><a href="#services">About</a></li>
               <li><a href="#contact">Contact</a></li>
-              <li><a href="signup.html">Sign Up</a></li>
-              <li><a href="login.html">Login</a></li>
+              <li><a id="signup" href="signup.html">Sign Up</a></li>
+              <li><a id="login" href="login.html">Login</a></li>
               <li id="close-flyout"><span class="fas fa-times"></span></li>
             </ul>
           </nav>
@@ -127,15 +127,15 @@
         <div class="flex">
           <div id="form-container">
             <h3>Contact Form</h3>
-            <form>
+            <form action="/contact" method="POST">
               <label for="name">Name</label>
-              <input type="text" id="name" />
+              <input type="text" id="name" name="name"/>
 
               <label for="email">Email</label>
-              <input type="text" id="email" />
+              <input type="text" id="email" name="email"/>
 
               <label for="subject">Subject</label>
-              <input type="text" id="subject" />
+              <input type="text" id="subject" name="subject"/>
 
               <label for="message">Message</label>
               <textarea id="message">Write your message here..</textarea>
@@ -255,8 +255,16 @@
 
         $(document).trigger("scroll");
       });
-
-
+      const status = localStorage.getItem('logged');
+      console.log(status);
+      if(status=='yes'){
+        const name = localStorage.getItem('name');
+        const signup  = document.getElementById("signup");
+        const login  = document.getElementById("login");
+        signup.style.visibility = 0
+        login.innerHTML = name;
+      }
+       
 
     </script>
   </body>

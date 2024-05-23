@@ -60,13 +60,13 @@ app.post("/login", async (req, res) => {
     const storedPassword = user.password;
     const username = user.name;
     if (storedPassword === password) {
-       res.send("logged")
+      res.json({ status: "logged", name: username });
     } 
     else {
-      res.send("Incorrect password");
+      res.json({ status: "Incorrect password" });
     }
   } else {
-    res.send("User doesn't exist");
+    res.json({ status: "User doesn't exist" });
    
   }
 });

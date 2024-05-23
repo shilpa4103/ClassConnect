@@ -61,12 +61,18 @@
           body: JSON.stringify(Object.fromEntries(formData)),
         });
     
-        const result = await response.text();
-        alert(result);
-    
-        if (result==="logged") {
+        const result = await response.json();
+        
+        const logged ="yes";
+        if (result.status==="logged") {
+            localStorage.setItem('username',result.name)
+            localStorage.setItem('logged',logged)
             window.location.href = 'homepage.html';
         }
+        else{
+            alert(result.status);
+        }
+        
       });
 
 
