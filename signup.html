@@ -11,67 +11,79 @@
 <body>
     <main class="card-container slideUp-animation">
         <div class="image-container">
-            
             <img src="image.jpg" class="illustration" alt="">
-            <pre class="quote">Sign up today to connect from anywhere
- around the world..!</pre>
-
+            <pre class="quote">Sign up today to connect from anywhere around the world..!</pre>
         </div>
-        <form action="" method="">
+        <form action="/register" method="POST">
             <div class="form-container slideRight-animation">
-    
                 <h1 class="form-header">
                     Get started
                 </h1>
-    
                 <div class="input-container">
-                    <label for="f-name"></label>
-                    <input type="text" name="f-name" id="f-name" required>
-                    <span>
-                        username
-                    </span>
+                    <label for="username"></label>
+                    <input type="text" name="username" id="username" required>
+                    <span>Username</span>
                     <div class="error"></div>
                 </div>
-    
                 <div class="input-container">
-                    <label for="mail">
-                    </label>
-                    <input type="email" name="mail" id="mail" required>
-                    <span>
-                        E-mail
-                    </span>
+                    <label for="email"></label>
+                    <input type="email" name="email" id="email" required>
+                    <span>E-mail</span>
                     <div class="error"></div>
                 </div>
-    
-    
                 <div class="input-container">
-                    <label for="user-password"></label>
-                    <input type="password" name="user-password" id="user-password" class="user-password" required>
+                    <label for="password"></label>
+                    <input type="password" name="password" id="password" class="password" required>
                     <span>Password</span>
                     <div class="error"></div>
                 </div>
-
                 <div class="input-container">
-                    <label for="user-password-confirm"></label>
-                    <input type="password" name="user-password-confirm" id="user-password-confirm" class="password-confirmation" required>
-                    <span>
-                        Confirm Password
-                    </span>
+                    <label for="password-confirm"></label>
+                    <input type="password" name="password-confirm" id="password-confirm" class="password-confirmation" required>
+                    <span>Confirm Password</span>
                     <div class="error"></div>
                 </div>
-
                 <div id="btm">
-                    <button type="submit" class="submit-btn" onclick="window.location.href='homepage.html'">Create Account</button>
-
-        
-                        <p class="btm-text">
-                            Already have an account..? <a href="login.html" class="btm-text-highlighted">Log in</a>
-                        </p>
-                        
-                   
+                    <button type="submit" class="submit-btn">Create Account</button>
+                    <p class="btm-text">
+                        Already have an account..? <a href="login.html" class="btm-text-highlighted">Log in</a>
+                    </p>
                 </div>
             </div>
         </form>
     </main>
 </body>
+
+<script>
+    document.querySelector('form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+  
+      const password = formData.get('password');
+      const confirmPassword = formData.get('password-confirm');
+      const passwordError = document.querySelector('.input-container .error');
+  
+      if (password !== confirmPassword) {
+        passwordError.textContent = 'Passwords do not match';
+        return;
+      } else {
+        passwordError.textContent = '';
+      }
+  
+      const response = await fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(Object.fromEntries(formData)),
+      });
+  
+      const result = await response.text();
+      alert(result);
+  
+      if (response.status === 201) {
+        window.location.href = 'homepage.html';  
+      }
+    });
+  </script>
 </html>
