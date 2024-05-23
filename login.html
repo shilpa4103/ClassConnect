@@ -65,8 +65,6 @@
         
         const logged ="yes";
         if (result.status==="logged") {
-            localStorage.setItem('username',result.name)
-            localStorage.setItem('logged',logged)
             window.location.href = 'homepage.html';
         }
         else{
