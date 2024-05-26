@@ -49,8 +49,13 @@
               <li><a href="#" class="active">Home</a></li>
               <li><a href="#services">About</a></li>
               <li><a href="#contact">Contact</a></li>
-              <li><a id="signup" href="signup.html">Sign Up</a></li>
-              <li><a id="login" href="login.html">Login</a></li>
+            
+                <li><a id="signup" href="signup.html">Sign Up</a></li>
+                <li><a id="login" href="login.html">Login</a></li>
+           
+             
+                  <li><a id="lobby" href="lobby.html">Lobby</a></li>
+           
               <li id="close-flyout"><span class="fas fa-times"></span></li>
             </ul>
           </nav>
@@ -294,14 +299,23 @@
 
 
       //to manage the user login name on the homepage
-      const status = localStorage.getItem('logged');
-      console.log(status);
-      if(status=='yes'){
-        const name = localStorage.getItem('name');
-        const signup  = document.getElementById("signup");
-        const login  = document.getElementById("login");
-        
-      }
+      document.addEventListener('DOMContentLoaded', () => {
+        const status = localStorage.getItem('status');
+        if (status === 'yes') {
+            const name = localStorage.getItem('name');
+            const signup = document.getElementById("signup");
+            const login = document.getElementById("login");
+            signup.style.display = 'none';
+            login.style.display = 'none';
+            if (name) {
+                // Display the user's name if needed
+                const userNameDisplay = document.getElementById('userNameDisplay');
+                if (userNameDisplay) {
+                    userNameDisplay.textContent = `Welcome, ${name}`;
+                }
+            }
+        }
+    });
        
 
     </script>

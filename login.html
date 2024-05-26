@@ -45,34 +45,44 @@
         const formData = new FormData(event.target);
         const email = formData.get('useremail');
         const password = formData.get('userpassword');
-
-        if(password==null || email==null){
-            alert("Any form field cannot be null")
-            document.querySelector('form').reset();
-        }
-
-     
     
-        const response = await fetch('http://localhost:3000/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(Object.fromEntries(formData)),
+        if (!email || !password) {
+            alert("Any form field cannot be empty");
+            document.querySelector('form').reset();
+            return; // Prevent further execution
+        }
+    
+        const formObject = {};
+        formData.forEach((value, key) => {
+            formObject[key] = value;
         });
     
-        const result = await response.json();
-        
-        const logged ="yes";
-        if (result.status==="logged") {
-            window.location.href = 'homepage.html';
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formObject),
+            });
+    
+            const result = await response.json();
+    
+            if (result.status === "logged") {
+                localStorage.setItem('status', 'yes');
+                localStorage.setItem('name', result.name); // Assuming the response has a 'name' field
+                window.location.href = 'homepage.html';
+            } else {
+                localStorage.setItem('status', 'no');
+                localStorage.setItem('name', '');
+                alert(result.status);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
         }
-        else{
-            alert(result.status);
-        }
-        
-      });
-
+    });
+    
 
 </script>
 </html>
