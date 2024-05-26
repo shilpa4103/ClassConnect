@@ -54,7 +54,7 @@
                 <li><a id="login" href="login.html">Login</a></li>
                   <li><a id="lobby" href="lobby.html">Lobby</a></li>
                   <li><a id="logout">LogOut</a></li>
-           
+                  <li><a id="userNameDisplay"></a></li>
               <li id="close-flyout"><span class="fas fa-times"></span></li>
             </ul>
           </nav>
@@ -304,7 +304,7 @@
         const signup = document.getElementById('signup');
         const login = document.getElementById('login');
         const userNameDisplay = document.getElementById('userNameDisplay');
-    
+        
         if (status !== "yes") {
             signout.style.display = 'none';
             lobby.style.display = 'none';
@@ -315,6 +315,7 @@
             
             const name = localStorage.getItem('name');
             if (name && userNameDisplay) {
+              userNameDisplay.style.color = 'white';
                 userNameDisplay.textContent = `Welcome, ${name}`;
             }
         }
