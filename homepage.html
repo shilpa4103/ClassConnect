@@ -52,9 +52,8 @@
             
                 <li><a id="signup" href="signup.html">Sign Up</a></li>
                 <li><a id="login" href="login.html">Login</a></li>
-           
-             
                   <li><a id="lobby" href="lobby.html">Lobby</a></li>
+                  <li><a id="logout">LogOut</a></li>
            
               <li id="close-flyout"><span class="fas fa-times"></span></li>
             </ul>
@@ -298,23 +297,40 @@
 
 
 
-      //to manage the user login name on the homepage
       document.addEventListener('DOMContentLoaded', () => {
         const status = localStorage.getItem('status');
-        if (status === 'yes') {
-            const name = localStorage.getItem('name');
-            const signup = document.getElementById("signup");
-            const login = document.getElementById("login");
+        const signout = document.getElementById('logout');
+        const lobby = document.getElementById('lobby');
+        const signup = document.getElementById('signup');
+        const login = document.getElementById('login');
+        const userNameDisplay = document.getElementById('userNameDisplay');
+    
+        if (status !== "yes") {
+            signout.style.display = 'none';
+            lobby.style.display = 'none';
+        } else {
+            signout.style.display = 'inline';
             signup.style.display = 'none';
             login.style.display = 'none';
-            if (name) {
-                // Display the user's name if needed
-                const userNameDisplay = document.getElementById('userNameDisplay');
-                if (userNameDisplay) {
-                    userNameDisplay.textContent = `Welcome, ${name}`;
-                }
+            
+            const name = localStorage.getItem('name');
+            if (name && userNameDisplay) {
+                userNameDisplay.textContent = `Welcome, ${name}`;
             }
         }
+    
+        // Adding event listener for signout
+        signout.addEventListener('click', () => {
+            localStorage.setItem('status', 'no');
+            localStorage.setItem('name', '');
+            signout.style.display = 'none';
+            lobby.style.display = 'none';
+            signup.style.display = 'inline';
+            login.style.display = 'inline';
+            if (userNameDisplay) {
+                userNameDisplay.textContent = '';
+            }
+        });
     });
        
 
